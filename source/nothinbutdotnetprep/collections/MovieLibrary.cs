@@ -113,23 +113,14 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_kid_movies()
         {
-            var list = new List<Movie>();
-            foreach (var movie in movies)
-            {
-                if (movie.genre == Genre.kids)
-                    list.Add(movie);
-            }
+            List<Movie> list = GetMovieList(Genre.kids);
             return list;
         }
 
+
         public IEnumerable<Movie> all_action_movies()
         {
-            var list = new List<Movie>();
-            foreach (var movie in movies)
-            {
-                if (movie.genre == Genre.action)
-                    list.Add(movie);
-            }
+            List<Movie> list = GetMovieList(Genre.action);
             return list;
         }
 
@@ -142,5 +133,18 @@ namespace nothinbutdotnetprep.collections
         {
             throw new NotImplementedException();
         }
+
+        //method to get movie list by type
+        private List<Movie> GetMovieList(Genre genre)
+        {
+            var list = new List<Movie>();
+            foreach (var movie in movies)
+            {
+                if (movie.genre == genre)
+                    list.Add(movie);
+            }
+            return list;
+        }
+
     }
 }
